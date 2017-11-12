@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using AdminCore.BusinessLogic.Products.Models;
+using AdminCore.BusinessLogic.Products.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdminCore.API.Controllers
@@ -9,11 +8,17 @@ namespace AdminCore.API.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IBrandService _brandService;
+
+        public ValuesController(IBrandService brandService)
+        {
+            _brandService = brandService;
+        }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Brand> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _brandService.GetAllBrands();
         }
 
         // GET api/values/5
