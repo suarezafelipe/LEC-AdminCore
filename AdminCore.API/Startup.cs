@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using AdminCore.Migrations;
 using AdminCore.Persistence.Domain.Products;
@@ -5,6 +6,9 @@ using AdminCore.Utilities;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
+=======
+﻿using Microsoft.AspNetCore.Builder;
+>>>>>>> 8ea84fa... Project Creation.
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
