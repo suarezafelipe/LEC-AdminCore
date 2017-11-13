@@ -1,9 +1,11 @@
 ﻿using System;
-using AdminCore.Utilities.DI;
+using AdminCore.Persistence.Products;
+using AdminCore.Utilities;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,8 +25,11 @@ namespace AdminCore.API
         {
             services.AddMvc();
 
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
+
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<ProductModule>();
+            containerBuilder.RegisterModule<AdminCoreModule>();
             containerBuilder.Populate(services);
             var container = containerBuilder.Build();
             return new AutofacServiceProvider(container);

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AdminCore.BusinessLogic\AdminCore.BusinessLogic.csproj" />
+    <ProjectReference Include="..\AdminCore.Persistence\AdminCore.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

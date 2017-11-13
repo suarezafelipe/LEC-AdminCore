@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace AdminCore.API.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class BrandsController : Controller
     {
         private readonly IBrandService _brandService;
 
-        public ValuesController(IBrandService brandService)
+        public BrandsController(IBrandService brandService)
         {
             _brandService = brandService;
         }
@@ -30,8 +30,9 @@ namespace AdminCore.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] Brand brand)
         {
+            _brandService.CreateBrand(brand);
         }
 
         // PUT api/values/5
