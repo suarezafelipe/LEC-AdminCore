@@ -1,5 +1,6 @@
 ﻿using System;
-using AdminCore.Persistence.Products;
+using AdminCore.Migrations;
+using AdminCore.Persistence.Domain.Products;
 using AdminCore.Utilities;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -25,7 +26,8 @@ namespace AdminCore.API
         {
             services.AddMvc();
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=LEC-AdminCoreTest.NewDb;Trusted_Connection=True;";
+            services.AddDbContext<MigrationsContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ProductContext>(options => options.UseSqlServer(connection));
 
             var containerBuilder = new ContainerBuilder();

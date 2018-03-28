@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AdminCore.Migrations\AdminCore.Migrations.csproj" />
     <ProjectReference Include="..\AdminCore.Persistence\AdminCore.Persistence.csproj" />
     <ProjectReference Include="..\AdminCore.Utilities\AdminCore.Utilities.csproj" />
   </ItemGroup>

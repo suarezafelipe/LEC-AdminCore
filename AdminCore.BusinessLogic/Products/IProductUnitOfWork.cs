@@ -7,7 +7,7 @@
  *                  of the persistence layer, so all it knows are the operations defined here.
  *                  For more information Google:"Inversion of Control (IoC)", "Low coupling"
  */
-using AdminCore.BusinessLogic.Products.RepositoriesInterfaces;
+using AdminCore.BusinessLogic.Products.RepoInterfaces;
 
 namespace AdminCore.BusinessLogic.Products
 {
