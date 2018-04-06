@@ -11,9 +11,10 @@ using System;
 namespace AdminCore.Migrations.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
-    partial class MigrationsContextModelSnapshot : ModelSnapshot
+    [Migration("20180404032243_CurrentModelReverseEngineering")]
+    partial class CurrentModelReverseEngineering
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

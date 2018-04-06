@@ -34,8 +34,9 @@ namespace AdminCore.Persistence
 
         private ModelBuilder BuilderConfiguration(ModelBuilder modelBuilder)
         {
-            modelBuilder = _productMapper.BrandMapping(modelBuilder);
-            modelBuilder = _productMapper.ProductMapping(modelBuilder);
+            //modelBuilder = _productMapper.BrandMapping(modelBuilder);
+            //modelBuilder = _productMapper.ProductMapping(modelBuilder);
+            modelBuilder = _productMapper.LecDbBuilder(modelBuilder);
             return modelBuilder;
         }
 

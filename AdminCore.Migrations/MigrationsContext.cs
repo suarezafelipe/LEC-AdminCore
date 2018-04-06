@@ -14,8 +14,8 @@ namespace AdminCore.Migrations
             _productMapper = new ProductsMapping();
         }
 
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<Product> Products { get; set; }
+        //public DbSet<Brand> Brands { get; set; }
+        //public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,8 +25,10 @@ namespace AdminCore.Migrations
 
         private ModelBuilder BuilderConfiguration(ModelBuilder modelBuilder)
         {
-            modelBuilder = _productMapper.BrandMapping(modelBuilder);
-            modelBuilder = _productMapper.ProductMapping(modelBuilder);
+            //modelBuilder = _productMapper.BrandMapping(modelBuilder);
+            //modelBuilder = _productMapper.ProductMapping(modelBuilder);
+            modelBuilder = _productMapper.LecDbBuilder(modelBuilder);
+
             return modelBuilder;
         }
 
