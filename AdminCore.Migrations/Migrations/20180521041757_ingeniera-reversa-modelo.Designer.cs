@@ -11,8 +11,8 @@ using System;
 namespace AdminCore.Migrations.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
-    [Migration("20180404032243_CurrentModelReverseEngineering")]
-    partial class CurrentModelReverseEngineering
+    [Migration("20180521041757_ingeniera-reversa-modelo")]
+    partial class ingenierareversamodelo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -3762,6 +3762,7 @@ namespace AdminCore.Migrations.Migrations
                         .HasName("IX_ID_ACVTIVIDAD_ECONOMICA");
 
                     b.HasIndex("IdIndividuo")
+                        .IsUnique()
                         .HasName("IX_ID_INDIVIDUO");
 
                     b.ToTable("PROVEEDORES");

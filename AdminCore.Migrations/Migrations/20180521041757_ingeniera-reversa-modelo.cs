@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AdminCore.Migrations.Migrations
 {
-    public partial class CurrentModelReverseEngineering : Migration
+    public partial class ingenierareversamodelo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -3083,7 +3083,8 @@ namespace AdminCore.Migrations.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ID_INDIVIDUO",
                 table: "PROVEEDORES",
-                column: "ID_INDIVIDUO");
+                column: "ID_INDIVIDUO",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ID_PARRAFO",

@@ -18,6 +18,7 @@ namespace AdminCore.Persistence.Domain.Products
         { }
 
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Brand> Marcas { get; set; }
         public DbSet<Product> Products { get; set; }
 
        

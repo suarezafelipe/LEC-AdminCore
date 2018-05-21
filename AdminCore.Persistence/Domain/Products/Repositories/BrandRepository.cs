@@ -31,7 +31,7 @@ namespace AdminCore.Persistence.Domain.Products.Repositories
        
         public List<Brand> GetAllBrands()
         {
-            return Enumerable.ToList<Brand>(_context.Brands);
+            return _context.Brands.ToList();
         }
 
 

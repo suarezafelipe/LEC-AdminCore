@@ -3761,6 +3761,7 @@ namespace AdminCore.Migrations.Migrations
                         .HasName("IX_ID_ACVTIVIDAD_ECONOMICA");
 
                     b.HasIndex("IdIndividuo")
+                        .IsUnique()
                         .HasName("IX_ID_INDIVIDUO");
 
                     b.ToTable("PROVEEDORES");
