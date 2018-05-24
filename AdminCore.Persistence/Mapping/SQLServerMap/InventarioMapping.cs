@@ -12,7 +12,6 @@ namespace AdminCore.Persistence.Mapping.SQLServerMap
         public virtual DbSet<ArticulosPorFacturaCompra> ArticulosPorFacturasCompras { get; set; }
         public virtual DbSet<ArticulosPorFacturaVenta> ArticulosPorFacturasVentas { get; set; }
         public virtual DbSet<Bodegas> Bodegas { get; set; }
-
         public virtual DbSet<DetallesAjusteInventario> DetallesAjustesInventario { get; set; }
         public virtual DbSet<DetallesEntradaInventario> DetallesEntradasInventario { get; set; }
         public virtual DbSet<DetallesSalidaInventario> DetallesSalidasInventario { get; set; }

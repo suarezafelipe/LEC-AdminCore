@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AdminCore.BusinessLogic.Products.Models;
 using AdminCore.Persistence.Audit;
 using AdminCore.Persistence.Mapping.Interfaces;
 using AdminCore.Persistence.Mapping.SQLServerMap;
@@ -9,82 +10,54 @@ namespace AdminCore.Persistence
 {
     public class MainContext: DbContext
     {
-        private readonly ISessionManager _sessionManager;
         private readonly IProductsMapping _productMapper;
+        private readonly IMarketingMapping _marketingMapper;
+        private readonly ICartMapping _cartMapping;
+        private readonly IInventarioMapping _inventarioMapper;
+        private readonly ICotizacionesMapping _cotizacionesMapper;
+        private readonly IUsuariosMapping _usuariosMapper;
+        private readonly IToBeDeleted _toBeDeleted;
 
-        protected MainContext(ISessionManager sessionManager)
+        public DbSet<Marcas> Marcas { get; set; }
+
+
+        protected MainContext(DbContextOptions<MainContext> options) : base(options)
         {
-            _sessionManager = sessionManager;
             _productMapper = new ProductsMapping();
+            _marketingMapper = new MarketingMapping();
+            _cartMapping = new CartMapping();
+            _inventarioMapper = new InventarioMapping();
+            _cotizacionesMapper = new CotizacionesMapping();
+            _usuariosMapper = new UsuariosMapping();
+            _toBeDeleted = new ToBeDeleted();
         }
    
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=LEC-AdminCoreTest.NewDb;Trusted_Connection=True;";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=LEC-DB-CORE;Trusted_Connection=True;";
             optionsBuilder.UseSqlServer(connection);
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder = Auditable(modelBuilder);
+            //modelBuilder = Auditable(modelBuilder);
             modelBuilder = BuilderConfiguration(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
         private ModelBuilder BuilderConfiguration(ModelBuilder modelBuilder)
         {
-            //modelBuilder = _productMapper.BrandMapping(modelBuilder);
-            //modelBuilder = _productMapper.ProductMapping(modelBuilder);
             modelBuilder = _productMapper.LecDbBuilder(modelBuilder);
+            modelBuilder = _marketingMapper.LecDbBuilder(modelBuilder);
+            modelBuilder = _cartMapping.LecDbBuilder(modelBuilder);
+            modelBuilder = _inventarioMapper.LecDbBuilder(modelBuilder);
+            modelBuilder = _cotizacionesMapper.LecDbBuilder(modelBuilder);
+            modelBuilder = _usuariosMapper.LecDbBuilder(modelBuilder);
+            modelBuilder = _toBeDeleted.LecDbBuilder(modelBuilder);
+
             return modelBuilder;
         }
 
-        /// <summary>
-        /// Audit fields
-        /// </summary>
-        /// <param name="modelBuilder"></param>
-        /// <returns></returns>
-        private ModelBuilder Auditable(ModelBuilder modelBuilder)
-        {
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
-                .Where(e => typeof(IAuditable).IsAssignableFrom(e.ClrType)))
-            {
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property<DateTime>("DateCreated");
-
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property<DateTime>("DateModified");
-
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property<Guid>("CreatedBy");
-
-                modelBuilder.Entity(entityType.ClrType)
-                    .Property<Guid>("ModifiedBy");
-            }
-            return modelBuilder;
-        }
-
-        protected virtual int SaveChangesAudit()
-        {
-            ApplyAuditInformation();
-            return SaveChanges();
-        }
-
-        private void ApplyAuditInformation()
-        {
-            var modifiedEntities = ChangeTracker.Entries<IAuditable>()
-                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
-            foreach (var entity in modifiedEntities)
-            {
-                entity.Property("DateModified").CurrentValue = DateTime.UtcNow;
-                entity.Property("ModifiedBy").CurrentValue = _sessionManager.SessionId;
-                if (entity.State == EntityState.Added)
-                {
-                    entity.Property("DateCreated").CurrentValue = DateTime.UtcNow;
-                    entity.Property("CreatedBy").CurrentValue = _sessionManager.SessionId;
-                }
-            }
-        }
     }
 }

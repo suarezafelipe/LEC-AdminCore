@@ -14,7 +14,7 @@ namespace AdminCore.BusinessLogic.Products.RepoInterfaces
 {
     public interface IBrandRepository
     {
-        bool CreateBrand(Brand brand);
-        List<Brand> GetAllBrands();
+        bool CreateBrand(Marcas marca);
+        List<Marcas> GetAllBrands();
     }
 }

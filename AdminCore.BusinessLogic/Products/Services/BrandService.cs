@@ -15,14 +15,14 @@ namespace AdminCore.BusinessLogic.Products.Services
         /// Returns the list of all products in the DB.
         /// </summary>
         /// <returns></returns>
-        public List<Brand> GetAllBrands()
+        public List<Marcas> GetAllBrands()
         {
             return _unitOfWork.Brands.GetAllBrands();
         }
 
-        public bool CreateBrand(Brand brand)
+        public bool CreateBrand(Marcas marca)
         {
-            var result = _unitOfWork.Brands.CreateBrand(brand);
+            var result = _unitOfWork.Brands.CreateBrand(marca);
             _unitOfWork.Complete();
             return result;
         }

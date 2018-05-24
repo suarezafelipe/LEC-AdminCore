@@ -16,11 +16,11 @@ namespace AdminCore.Persistence.Domain.Products
 {
     public class ProductUnitOfWork : IProductUnitOfWork
     {
-        private readonly ProductContext _context;
+        private readonly MainContext _context;
 
         public IBrandRepository Brands { get; set; }
 
-        public ProductUnitOfWork(ProductContext context)
+        public ProductUnitOfWork(MainContext context)
         {
             _context = context;
             Brands = new BrandRepository(context);

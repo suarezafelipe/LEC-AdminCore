@@ -8,18 +8,18 @@ namespace AdminCore.Persistence.Domain.Products.Repositories
 {
     public class BrandRepository : IBrandRepository
     {
-        private readonly IProductContext _context;
+        private readonly MainContext _context;
 
-        public BrandRepository(IProductContext context)
+        public BrandRepository(MainContext context)
         {
             _context = context;
         }
         
-        public bool CreateBrand(Brand brand)
+        public bool CreateBrand(Marcas marca)
         {
             try
             {
-                _context.Brands.Add(brand);
+                _context.Marcas.Add(marca);
                 return true;
             }
             catch (Exception e)
@@ -29,9 +29,9 @@ namespace AdminCore.Persistence.Domain.Products.Repositories
             }
         }
        
-        public List<Brand> GetAllBrands()
+        public List<Marcas> GetAllBrands()
         {
-            return _context.Brands.ToList();
+            return _context.Marcas.ToList();
         }
 
 

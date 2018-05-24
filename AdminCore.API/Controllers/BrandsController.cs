@@ -16,7 +16,7 @@ namespace AdminCore.API.Controllers
         }
         // GET api/values
         [HttpGet]
-        public List<Brand> Get()
+        public List<Marcas> Get()
         {
             return _brandService.GetAllBrands();
         }
@@ -30,9 +30,9 @@ namespace AdminCore.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] Brand brand)
+        public void Post([FromBody] Marcas marca)
         {
-            _brandService.CreateBrand(brand);
+            _brandService.CreateBrand(marca);
         }
 
         // PUT api/values/5
